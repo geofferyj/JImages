@@ -1,0 +1,21 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:1.13-alpine
+    container_name: nginx_container
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./project:/src
+      - ./config/nginx:/etc/nginx/conf.d
+    depends_on:
+      - api
+  api:
+    build: .
+    container_name: JImages
+    command: bash -c "gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000"
+    volumes:
+      - ./project:/src
+    expose:
+      - "8000"
+    restart: always
