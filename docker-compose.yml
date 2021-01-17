@@ -6,16 +6,15 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./project:/src
+      - ./project:/app
       - ./config/nginx:/etc/nginx/conf.d
     depends_on:
       - api
   api:
     build: .
     container_name: JImages
-    command: bash -c "gunicorn server.app:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000"
     volumes:
-      - ./project:/src
+      - ./project:/app
     expose:
       - "8000"
     restart: always
