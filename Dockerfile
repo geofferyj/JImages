@@ -12,5 +12,5 @@ RUN apk --no-cache add --virtual harfbuzz-dev jpeg-dev lcms2-dev build-base open
     
 RUN pip install --no-cache-dir -r /config/requirements.txt
 
-COPY ./project /app
+COPY ./app /app
 WORKDIR /app

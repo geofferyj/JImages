@@ -4,9 +4,9 @@ services:
     image: nginx:1.13-alpine
     container_name: nginx_container
     ports:
-      - "8000:8000"
+      - "80:8000"
     volumes:
-      - ./project:/app
+      - ./app:/app
       - ./config/nginx:/etc/nginx/conf.d
     depends_on:
       - api
@@ -14,7 +14,7 @@ services:
     build: .
     container_name: JImages
     volumes:
-      - ./project:/app
+      - ./app:/app
     expose:
       - "8000"
     restart: always
